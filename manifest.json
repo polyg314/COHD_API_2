@@ -1,0 +1,12 @@
+{
+    "version": "0.2",
+    "requires" : ["pandas"],
+    "dumper" : {
+        "data_url" : ["https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/pc_sorted_test.txt", "https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/concept_xref.json"],
+        "uncompress" : false
+    },
+    "uploader" : {
+        "parser" : "parser:load_annotations",
+        "on_duplicates" : "error"
+    }
+}
