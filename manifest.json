@@ -2,7 +2,7 @@
     "version": "0.2",
     "requires" : ["pandas"],
     "dumper" : {
-        "data_url" : ["https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/pc_text.csv", "https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/concept_xref.json"],
+        "data_url" : ["https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/pc_test.csv", "https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/concept_xref.json"],
         "uncompress" : false
     },
     "uploader" : {
