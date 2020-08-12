@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import os
 
-PAIRED_CONCEPT_FILE_NAME = 'pc_text.csv'
+PAIRED_CONCEPT_FILE_NAME = 'pc_test.csv'
 CONCEPT_XREF_FILE_NAME = 'concept_xref.json'
 CHUNK_SIZE = 1000000
 MAX_COMBOS = 100
