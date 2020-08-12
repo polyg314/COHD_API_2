@@ -2,8 +2,7 @@ import pandas as pd
 import json
 import os
 
-PAIRED_CONCEPT_FILE_NAME = 'pc_sorted_test.txt'
-PAIRED_CONCEPT_COLUMN_NAMES = ["dataset_id","concept_id_1","concept_id_2","concept_count","concept_prevalence","chi_square_t","chi_square_p","expected_count","ln_ratio","rel_freq_1","rel_freq_2"]
+PAIRED_CONCEPT_FILE_NAME = 'pc_text.csv'
 CONCEPT_XREF_FILE_NAME = 'concept_xref.json'
 CHUNK_SIZE = 1000000
 MAX_COMBOS = 100
@@ -21,7 +20,7 @@ def load_annotations(data_folder):
     for x in xref_data:
         xref_data_dict[x["_id"]] = x
 
-    paired_concepts_table_total = pd.read_csv(paired_concept_url, sep='\t', header=None, names= PAIRED_CONCEPT_COLUMN_NAMES, chunksize=CHUNK_SIZE)  
+    paired_concepts_table_total = pd.read_csv(paired_concept_url, chunksize=CHUNK_SIZE)  
     for chunk in paired_concepts_table_total:
         paired_concepts_table = chunk
         for i,j in paired_concepts_table.iterrows():
