@@ -54,7 +54,7 @@ def load_annotations(data_folder):
                 }
               ]
             }
-            if(current_id != last_id): 
-            	yield(current_dict)
+            if(current_id != last_id):
+                yield(current_dict)
 
             
