@@ -30,30 +30,30 @@ def load_annotations(data_folder):
             current_id_1 = str(int(j["concept_id_1"]))
             current_id_2 = str(int(j["concept_id_2"]))
             current_id = current_id_1 + "-" + current_id_2
-            current_dict = {
-              "_id": current_id,
-              "concept1": {
-                 "omop": current_id_1,
-                 "xrefs": xref_data_dict[current_id_1]["xrefs"]
-              },
-              "concept2": {
-                 "omop": current_id_2,
-                 "xrefs": xref_data_dict[current_id_2]["xrefs"]
-              },
-              "results": [
-                {
-                    "concept_count": int(j["concept_count"]),
-                    "concept_prevalence": j["concept_prevalence"],
-                    "dataset_id": j["dataset_id"],
-                    "chi_square_t": j["chi_square_t"],
-                    "chi_square_p": j["chi_square_p"],
-                    "ln_ratio": j["ln_ratio"],
-                    "rel_freq_1": j["rel_freq_1"],
-                    "rel_freq_2":j["rel_freq_2"]
-                }
-              ]
-            }
             if(current_id != last_id):
+                current_dict = {
+                  "_id": current_id,
+                  "concept1": {
+                     "omop": current_id_1,
+                     "xrefs": xref_data_dict[current_id_1]["xrefs"]
+                  },
+                  "concept2": {
+                     "omop": current_id_2,
+                     "xrefs": xref_data_dict[current_id_2]["xrefs"]
+                  },
+                  "results": [
+                    {
+                        "concept_count": int(j["concept_count"]),
+                        "concept_prevalence": j["concept_prevalence"],
+                        "dataset_id": j["dataset_id"],
+                        "chi_square_t": j["chi_square_t"],
+                        "chi_square_p": j["chi_square_p"],
+                        "ln_ratio": j["ln_ratio"],
+                        "rel_freq_1": j["rel_freq_1"],
+                        "rel_freq_2":j["rel_freq_2"]
+                    }
+                  ]
+                }
                 yield(current_dict)
 
             
