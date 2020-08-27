@@ -21,7 +21,7 @@ def load_annotations(data_folder):
         xref_data_dict[x["_id"]] = x
 
     # last_id_1 = ''
-    current_id = ''
+    current_id_1 = ''
     ids_included = []
     # yield_result = True
 
@@ -33,11 +33,11 @@ def load_annotations(data_folder):
     for chunk in paired_concepts_table_total:
         paired_concepts_table = chunk
         for i,j in paired_concepts_table.iterrows():
-            last_id_1 = current_id
+            last_id_1 = current_id_1
             current_id_1 = str(int(j["concept_id_1"]))
             current_id_2 = str(int(j["concept_id_2"]))
             current_id = current_id_1 + "-" + current_id_2
-            if(last_id_1 == current_id):
+            if(last_id_1 == current_id_1):
                 if(current_id in ids_included):
                     for i in range(0,len(current_results)):
                         if(current_results[i]["_id"] == current_id):
