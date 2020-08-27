@@ -23,6 +23,8 @@ def load_annotations(data_folder):
     last_id = '';
     current_id = '';
     paired_concepts_table_total = pd.read_csv(paired_concept_url, chunksize=CHUNK_SIZE)  
+    
+
     for chunk in paired_concepts_table_total:
         paired_concepts_table = chunk
         for i,j in paired_concepts_table.iterrows():
