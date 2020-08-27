@@ -21,7 +21,7 @@ def load_annotations(data_folder):
         xref_data_dict[x["_id"]] = x
 
     last_id_1 = ''
-    current_id = ''
+    current_id_1 = ''
     id_1_matches = []
     yield_result = True
 
