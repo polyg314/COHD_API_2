@@ -20,14 +20,13 @@ def load_annotations(data_folder):
     for x in xref_data:
         xref_data_dict[x["_id"]] = x
 
-
     lase_id = '';
     current_id = '';
     paired_concepts_table_total = pd.read_csv(paired_concept_url, chunksize=CHUNK_SIZE)  
     for chunk in paired_concepts_table_total:
         paired_concepts_table = chunk
         for i,j in paired_concepts_table.iterrows():
-        	last_id = current_id
+            last_id = current_id
             current_id_1 = str(int(j["concept_id_1"]))
             current_id_2 = str(int(j["concept_id_2"]))
             current_id = current_id_1 + "-" + current_id_2
