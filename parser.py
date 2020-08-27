@@ -20,42 +20,53 @@ def load_annotations(data_folder):
     for x in xref_data:
         xref_data_dict[x["_id"]] = x
 
-    last_id = '';
-    current_id = '';
+    last_id_1 = ''
+    current_id = ''
+    id_1_matches = []
+    yield_result = True
+
     paired_concepts_table_total = pd.read_csv(paired_concept_url, chunksize=CHUNK_SIZE)  
-    
+
 
     for chunk in paired_concepts_table_total:
         paired_concepts_table = chunk
         for i,j in paired_concepts_table.iterrows():
-            last_id = current_id
+            last_id_1 = current_id_1
             current_id_1 = str(int(j["concept_id_1"]))
             current_id_2 = str(int(j["concept_id_2"]))
             current_id = current_id_1 + "-" + current_id_2
-            if(current_id != last_id):
-                current_dict = {
-                  "_id": current_id,
-                  "concept1": {
-                     "omop": current_id_1,
-                     "xrefs": xref_data_dict[current_id_1]["xrefs"]
-                  },
-                  "concept2": {
-                     "omop": current_id_2,
-                     "xrefs": xref_data_dict[current_id_2]["xrefs"]
-                  },
-                  "results": [
-                    {
-                        "concept_count": int(j["concept_count"]),
-                        "concept_prevalence": j["concept_prevalence"],
-                        "dataset_id": j["dataset_id"],
-                        "chi_square_t": j["chi_square_t"],
-                        "chi_square_p": j["chi_square_p"],
-                        "ln_ratio": j["ln_ratio"],
-                        "rel_freq_1": j["rel_freq_1"],
-                        "rel_freq_2":j["rel_freq_2"]
-                    }
-                  ]
-                }
-                yield(current_dict)
-
+            if(last_id_1 == current_id_1):
+            	if(current_id_2 not in id_1_matches):
+            		yield_result = True
+            		id_1_matches.append(current_id_2)
+            	else: 
+            		yield_result = False
+            else:
+            	id_1_matches = []
+            	yield_result = True
+            if(yield_result):
+	            current_dict = {
+	              "_id": current_id,
+	              "concept1": {
+	                 "omop": current_id_1,
+	                 "xrefs": xref_data_dict[current_id_1]["xrefs"]
+	              },
+	              "concept2": {
+	                 "omop": current_id_2,
+	                 "xrefs": xref_data_dict[current_id_2]["xrefs"]
+	              },
+	              "results": [
+	                {
+	                    "concept_count": int(j["concept_count"]),
+	                    "concept_prevalence": j["concept_prevalence"],
+	                    "dataset_id": j["dataset_id"],
+	                    "chi_square_t": j["chi_square_t"],
+	                    "chi_square_p": j["chi_square_p"],
+	                    "ln_ratio": j["ln_ratio"],
+	                    "rel_freq_1": j["rel_freq_1"],
+	                    "rel_freq_2":j["rel_freq_2"]
+	                }
+	              ]
+	            }
+	            yield(current_dict)
             
