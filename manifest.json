@@ -2,7 +2,7 @@
     "version": "0.2",
     "requires" : ["pandas"],
     "dumper" : {
-        "data_url" : ["http://192.168.0.15:8081/paired_concept_counts_associations.csv", "https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/concept_xref.json"],
+        "data_url" : ["http://192.168.0.34:8081/paired_concept_counts_associations.csv", "https://github.com/polyg314/COHD_APIs/raw/master/COHD_prework/concept_xref.json"],
         "uncompress" : false
     },
     "uploader" : {
