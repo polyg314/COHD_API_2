@@ -8,10 +8,10 @@ CHUNK_SIZE = 1000000
 MAX_COMBOS = 100
 
 def load_annotations(data_folder):
-    ```load annotations function
+    """load annotations function
     
     Use paired concept ids to form new id
-    ```
+    """
 
     paired_concept_url = os.path.join(data_folder,PAIRED_CONCEPT_FILE_NAME)
     concept_xref_url = os.path.join(data_folder,CONCEPT_XREF_FILE_NAME)
